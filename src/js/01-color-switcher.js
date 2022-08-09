@@ -8,6 +8,8 @@ const refs = {
   btnStop: document.querySelector('[data-stop]'),
 };
 
+let timerId = null;
+
 refs.btnStart.addEventListener('click', onBtnStart);
 refs.btnStop.addEventListener('click', onBtnStop);
 
