@@ -2,15 +2,14 @@ const refs = {
   inputDelay: document.querySelector('input[name="delay"]'),
   inputStep: document.querySelector('input[name="step"]'),
   inputAmount: document.querySelector('input[name="amount"]'),
-  submitBtn: document.querySelector('form > button'),
+  form: document.querySelector('form'),
 };
-// refs.submitBtn.addEventListener(
-//   'submit',
-//   createPromise(refs.inputAmount.value, refs.inputDelay.value)
-// );
+refs.form.addEventListener('submit', e => {
+  e.preventDefault();
+  createPromise(refs.inputAmount.value, refs.inputDelay.value);
+});
 
 function createPromise(position, delay) {
-  stopDefAction();
   for (let i = 0; i < position; i += 1) {
     const shouldResolve = Math.random() > 0.3;
     const promise = new Promise((resolve, reject) => {
