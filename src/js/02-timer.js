@@ -59,8 +59,6 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-npm;
-
 function onCounter(timeToCounter) {
   refs.daysTimerValue.textContent = String(timeToCounter.days).padStart(2, 0);
   refs.hoursTimerValue.textContent = String(timeToCounter.hours).padStart(2, 0);
@@ -72,6 +70,26 @@ function onCounter(timeToCounter) {
     2,
     0
   );
+}
+
+function onBtnStartClick() {
+  refs.btnStart.setAttribute('disabled', 'disabled');
+  refs.inputCalendar.setAttribute('disabled', 'disabled');
+  Notiflix.Notify.success('Success', {
+    timeout: 5000,
+  });
+  timerId = setInterval(() => {
+    if (timeInTimer < 1000) {
+      clearInterval(timerId);
+      refs.btnStart.removeAttribute('disabled');
+      refs.inputCalendar.removeAttribute('disabled');
+      return;
+    }
+    const timeToCounter = convertMs((timeInTimer -= 1000));
+    console.log(timeToCounter);
+    onCounter(timeToCounter);
+    console.log(timeInTimer);
+  }, 1000);
 }
 
 function ifStartBtnClick() {
